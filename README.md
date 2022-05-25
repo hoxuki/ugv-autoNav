@@ -17,6 +17,6 @@ Husky Gazebo simulation + YOLO + Windows / Doors detection
   #### Step 2: Install the realsense2_camera libraries
    ### Ubuntu
    ## In the terminal, type:
-    - sudo apt-get install ros-$ROS_DISTRO-realsense2-camera`.
+    sudo apt-get install ros-$ROS_DISTRO-realsense2-camera
 
 ## Run
