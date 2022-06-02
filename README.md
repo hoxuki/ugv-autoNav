@@ -1,5 +1,7 @@
 # ugv-autoNav
 Husky Gazebo simulation + YOLO + Windows/Doors detection
+
+
 ## Introduction
 "Simple?" project that uses ScaledYOLOv4 to detect objects in Gazebo
 
@@ -11,13 +13,12 @@ Husky Gazebo simulation + YOLO + Windows/Doors detection
    ### Windows
    - #### Install [ROS Melodic or later on Windows 10](https://wiki.ros.org/Installation/Windows)
    
-
   #### Step 2: Install the husky libraries
    ### Ubuntu
    ## In the terminal, type:
     sudo apt-get install ros-noetic-husky-desktop
     sudo apt-get install ros-noetic-husky-simulator
-   
+  
    
   #### Step 3: Install the realsense2_camera libraries
    ### Ubuntu
