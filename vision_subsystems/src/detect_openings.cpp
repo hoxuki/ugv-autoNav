@@ -47,6 +47,7 @@ void callback(const sensor_msgs::ImageConstPtr& msg) {
 
     cvtColor(frameGray, cdstP, cv::COLOR_GRAY2BGR);
     cvtColor(frameGray, cdst, cv::COLOR_GRAY2BGR);
+
     
     //finding all contours in the image
     /** method1 */
@@ -81,6 +82,8 @@ void callback(const sensor_msgs::ImageConstPtr& msg) {
         	for (size_t i = 0; i < lines.size(); i++) {
                 line(cdst, pt1[i], pt2[i], cv::Scalar(255,0,0), 3, cv::LINE_AA);
             }
+            std::cout<<(pt1[i])<<" "<<(pt1[i].y)<<" "<<(pt2[i].x)<<" "<<(pt2[i].y)<<std::endl;
+
         }
 
         for (size_t start = 0; start < lines.size() - 1; start++) {																	
@@ -102,7 +105,9 @@ void callback(const sensor_msgs::ImageConstPtr& msg) {
                     numlines++;			
                 }
             }
+            
         }     
+
 
         if (numlines > 3) {																
             for (size_t i = 0; i < numlines - 1; i++) {															
