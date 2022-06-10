@@ -1,0 +1,10 @@
+Start the Clearpath-configured Husky simulation environment:
+$ roslaunch husky_gazebo husky_empty_world.launch 
+$ roslaunch husky_gazebo husky_playpen.launch
+
+Start the Clearpath-configured rviz visualizer:
+$ roslaunch husky_viz view_robot.launch
+
+Start navigation node:
+$ roslaunch husky_navigation move_base_mapless_demo.launch
+$ roslaunch husky_navigation exploration_demo.launch
