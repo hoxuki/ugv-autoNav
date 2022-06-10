@@ -79,11 +79,10 @@ void callback(const sensor_msgs::ImageConstPtr& msg) {
             pt2[i].x = cvRound(x0 - 1000*(-b));
             pt2[i].y = cvRound(y0 - 1000*(a));
         
-        	for (size_t i = 0; i < lines.size(); i++) {
-                line(cdst, pt1[i], pt2[i], cv::Scalar(255,0,0), 3, cv::LINE_AA);
-            }
-            std::cout<<(pt1[i])<<" "<<(pt1[i].y)<<" "<<(pt2[i].x)<<" "<<(pt2[i].y)<<std::endl;
-
+        	// for (size_t i = 0; i < lines.size(); i++) {
+            //     line(cdst, pt1[i], pt2[i], cv::Scalar(255,0,0), 3, cv::LINE_AA);
+            // }
+            // std::cout<<(pt1[i])<<" "<<(pt1[i].y)<<" "<<(pt2[i].x)<<" "<<(pt2[i].y)<<std::endl;
         }
 
         for (size_t start = 0; start < lines.size() - 1; start++) {																	
@@ -96,7 +95,7 @@ void callback(const sensor_msgs::ImageConstPtr& msg) {
                 m2 = (pt2[i].y - pt1[i].y) / denom2;						
                 m3 = -(m1*m2);												
 
-                if (m3 > 0.1  && m3 < 4.0) {			
+                if (m3 > 0.9  && m3 <= 1) {			
                     f1[numlines] = pt1[start];  
                     f2[numlines] = pt2[start];
                     numlines++;               
@@ -105,7 +104,6 @@ void callback(const sensor_msgs::ImageConstPtr& msg) {
                     numlines++;			
                 }
             }
-            
         }     
 
 
@@ -122,9 +120,11 @@ void callback(const sensor_msgs::ImageConstPtr& msg) {
                 }
             }	
         }
+        
         for (size_t i = 0; i < numlines; i++) {			
-			line(cdst, f1[i], f2[i], cv::Scalar(0, 255, 0), 3, cv::LINE_AA);			
-        }																
+			line(cdst, f1[i], f2[i], cv::Scalar(0, 255, 0), 3, cv::LINE_AA);	
+            std::cout<<(pt1[1].x)<<" "<<(pt1[i].y)<<std::endl;
+        }									
         // int counter = 0;														//
         // for (size_t start = 0; start < numlines - 1; start++) {																		// Double loop system for comparisons, same as before
         //     for (size_t i = start + 1; i < numlines; i++) {																	//
@@ -157,13 +157,31 @@ void callback(const sensor_msgs::ImageConstPtr& msg) {
 
 		// 	}
         // }   
-        printf("Numlines = %d\n", numlines);		//Checking value of numlines
+
+
+        // for (size_t i = 0; i < counter - 1; i++)								//
+        // {																		//
+        //     for (size_t r = i + 1; r < counter; r++)							//
+        //     {																	// Remove duplicates from the P array as was done before with f1 and f2
+        //         if (P[i].x == P[r].x && P[i].y == P[r].y)						// if P = next P
+        //         {																//
+        //             for (size_t m = r; m < counter - 1; m++)					//
+        //             {															//
+        //                 P[m] = P[m + 1];										// Make P = next P
+        //             }															//
+        //             counter--;													// Reduce size of array by 1
+        //             printf("Counter (points) is now %d\n", counter);									//uncomment if you want to check this variable
+        //         }
+        //     }
+        // }
 						
     }
-       
-
+    
+    // double width  = vcap.get(cv2::CV_CAP_PROP_FRAME_WIDTH);
+    // double height = vcap.get(cv2.cv.CV_CAP_PROP_FRAME_HEIGHT);  
+    cv::drawMarker(cdst, cv::Point(500, 320),  cv::Scalar(0, 0, 255), cv::MARKER_CROSS, 10, 1);
     cv::imshow("image window", cdst);
-    cv::waitKey(1);
+    cv::waitKey(33);
 }
 
 
@@ -175,7 +193,7 @@ int main(int argc, char** argv) {
 
     image_transport::ImageTransport it(nh);
     image_transport::Subscriber sub_image = it.subscribe("/camera/color/image_raw", 1, callback);
-    image_transport::Publisher pub_image = it.advertise("/detect_openings/output_video", 1);
+    // image_transport::Publisher pub_image = it.advertise("/detect_openings/rgb_output", 1);
     
 
     // // publishing rate 1 Hz

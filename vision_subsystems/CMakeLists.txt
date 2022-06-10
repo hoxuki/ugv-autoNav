@@ -58,11 +58,10 @@ find_package(catkin REQUIRED COMPONENTS
 # )
 
 ## Generate services in the 'srv' folder
-# add_service_files(
-#   FILES
-#   Service1.srv
-#   Service2.srv
-# )
+add_service_files(
+  FILES
+  GetFrameCoordinates.srv
+)
 
 ## Generate actions in the 'action' folder
 # add_action_files(
@@ -139,6 +138,7 @@ include_directories(
 ## The recommended prefix ensures that target names across packages don't collide
 # add_executable(${PROJECT_NAME}_node src/main_node.cpp)
 add_executable(detect_openings src/detect_openings.cpp)
+add_executable(find_depth src/find_depth.cpp)
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
@@ -150,6 +150,7 @@ add_executable(detect_openings src/detect_openings.cpp)
 ## same as for the library above
 # add_dependencies(${PROJECT_NAME}_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 add_dependencies(detect_openings main_generate_messages_cpp)
+add_dependencies(find_depth main_generate_messages_cpp)
   
 ## Specify libraries to link a library or executable target against
 # target_link_libraries(${PROJECT_NAME}_node
@@ -158,6 +159,10 @@ add_dependencies(detect_openings main_generate_messages_cpp)
 target_link_libraries(detect_openings
   ${catkin_LIBRARIES}
   ${openCV_LIBRARIES}
+)
+target_link_libraries(find_depth
+${catkin_LIBRARIES}
+${openCV_LIBRARIES}
 )
 
 #############
@@ -169,10 +174,11 @@ target_link_libraries(detect_openings
 
 ## Mark executable scripts (Python etc.) for installation
 ## in contrast to setup.py, you can choose the destination
-# catkin_install_python(PROGRAMS
-#   scripts/my_python_script
-#   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
-# )
+catkin_install_python(PROGRAMS
+  scripts/find_depth_service.py
+  scripts/find_depth_client.py
+  DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+)
 
 ## Mark executables for installation
 ## See http://docs.ros.org/melodic/api/catkin/html/howto/format1/building_executables.html
