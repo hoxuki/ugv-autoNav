@@ -31,7 +31,7 @@ bool getCoordinates(navigation_subsystems::SetWaypoint::Request  &req,
     goal.target_pose.header.frame_id = "map";
     goal.target_pose.header.stamp = ros::Time::now();
 
-    double setpointGoal[3] = {x, y, z};
+    double setpointGoal[3] = {x, y, z}; // remove this line
     goal.target_pose.pose.position.x = setpointGoal[0];
     goal.target_pose.pose.position.y = setpointGoal[1];
     goal.target_pose.pose.orientation.w = setpointGoal[2];
@@ -93,7 +93,7 @@ int main(int argc, char **argv) {
 //     actionClient.waitForResult();
         
 //     /**
-//      * For settingg multiple goals
+//      * For setting multiple goals
 //      */
 //     // float goals[2][3] = {{-8, 8, 1.0}, {7, 7, 1.57}};
 //     //     for(int i=0; i<2; i++) {
