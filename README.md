@@ -26,6 +26,8 @@ Simple? project that uses ScaledYOLOv4 to detect objects in Gazebo
     sudo apt-get install ros-$ROS_DISTRO-realsense2-camera
 
 ## Run
+  #### Running navigation subsytem
+  #### Running vision subsystem
 
 
-Good luck
+Good luck :)
