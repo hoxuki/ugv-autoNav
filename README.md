@@ -15,14 +15,14 @@ Simple? project that uses ScaledYOLOv4 to detect objects in Gazebo
    
   #### Step 2: Install the husky libraries
    ### Ubuntu
-   ## In the terminal, type:
+   ### In the terminal, type:
     sudo apt-get install ros-$ROS_DISTRO-husky-desktop
     sudo apt-get install ros-$ROS_DISTRO-husky-simulator
   
    
   #### Step 3: Install the realsense2_camera libraries
    ### Ubuntu
-   ## In the terminal, type:
+   ### In the terminal, type:
     sudo apt-get install ros-$ROS_DISTRO-realsense2-camera
 
 ## Run
