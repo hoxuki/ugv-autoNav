@@ -1,1 +1,9 @@
-Roslaunch 
+* Ensure that the RealSense camera node is up and running
+
+Launching the nodes to find depth 
+$ Rosrun vision_subsytems find_depth_service.py
+$ Rosrun vision_subsytems find_depth_client.py
+
+
+Launching the node to detect openings
+$ Rosrun vision_subsytems detect_openings.cpp
